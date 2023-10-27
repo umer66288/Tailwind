@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    
+    <title>Apple Store</title>
+  <link rel="stylesheet" href="/assets/index-5c85ca1f.css">
+</head>
+
+<body>
+    <!-- NavBar -->
+    <header class="flex justify-between py-5 md:px-9 px-4 bg-purple-400 shadow-md items-center">
+        <div>
+            <h1 class="font-semibold text-lg">
+                <a href="home" class="flex items-center">
+                    <img src="/assets/logo-85484d93.png" alt="" class="mr-1 h-10">
+                    <p class="font-medium text-2xl">Store</p>
+                </a>
+            </h1>
+        </div>
+        <div>
+            <!-- SideMenu -->
+            <ul class="fixed top-0 right-0 h-screen w-screen z-50  backdrop-blur-md flex-col items-center justify-center hidden"
+                id="sidemenu">
+                <img src="/assets/closemenu-b60f964e.png" alt="" class="h-10" onclick="closemenu()">
+                <a href="#home" class="hover:text-gray-200 font-medium cursor-pointer text-xl my-3"
+                    onclick="closemenu()">Home</a>
+                <a href="#phone" class="hover:text-gray-200 font-medium cursor-pointer text-xl my-3"
+                    onclick="closemenu()">Phone</a>
+                <a href="#price" class="hover:text-gray-200 font-medium cursor-pointer text-xl my-3"
+                    onclick="closemenu()">Price</a>
+                <a href="#contact" class="hover:text-gray-200 font-medium cursor-pointer text-xl my-3"
+                    onclick="closemenu()">Contact</a>
+            </ul>
+            <!-- Nav -->
+            <ul class="md:flex space-x-4 hidden">
+                <a href="#home" class="hover:text-gray-200 font-medium cursor-pointer text-lg">Home</a>
+                <a href="#phone" class="hover:text-gray-200 font-medium cursor-pointer text-lg">Phone</a>
+                <a href="#price" class="hover:text-gray-200 font-medium cursor-pointer text-lg">Price</a>
+                <a href="#contact" class="hover:text-gray-200 font-medium cursor-pointer text-lg">Contact</a>
+            </ul>
+            <div class="md:hidden inline-block" onclick="showSidemenu()">
+                <img src="data:image/png;base64,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" alt="" class="h-10">
+            </div>
+        </div>
+    </header>
+    <!-- Hero Section -->
+    <section
+        class="main bg-purple-300 block md:flex justify-between md:px-14 px-8 lg:py-24 md:py-20 sm:py-0 lg:px-20 border-white border-b-2"
+        id="home">
+        <div class="flex justify-center items-center">
+            <div class="md:pt-0 md:text-start pt-16 pb-10 text-center">
+                <h1 class="text-4xl font-bold tracking-tight text-gray-300 sm:text-6xl font-serif mb-4">Best Phone</h1>
+                <p class="text-gray-300">Explore cutting-edge smartphones at unbeatable prices! <br> Upgrade your tech
+                    with our latest phone
+                    deals. Shop now!</p>
+                <button class="btn">Buy Phone</button>
+                <button class="btn">Contact Us</button>
+            </div>
+        </div>
+        <div class="flex justify-center items-center">
+            <img src="/assets/Apple_iphone_11-rosette-family-lineup-091019_big.jpg.large-removebg-preview-4c2f0edd.png" alt=""
+                class="h-full ">
+        </div>
+    </section>
+    <!-- Phone Section -->
+    <section id="phone" class="bg-purple-300 border-white border-b-2">
+        <h1 class="text-4xl font-bold tracking-tight text-gray-900 md:text-6xl font-serif text-center pt-14">Available
+            Now</h1>
+        <p class="mt-3 text-lg leading-8 text-gray-600 text-center">Elevate your mobile experience with our latest
+            smartphone</p>
+        <div class="swiper mySwiper h-full w-full py-10">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide flex justify-center items-center">
+                    <div
+                        class="phone transition duration-300 ease-in-out border-2 rounded-md border-white w-72 overflow-hidden hover:bg-purple-200">
+                        <img src="/assets/iphone13-a88a986c.png" alt=""
+                            class="w-full hover:scale-105 h-72 transition duration-300 ease-in-out">
+                        <div class="py-4 px-3">
+                            <h3 class="text-2xl font-semibold">IPhone 13</h3>
+                            <div class="flex justify-between">
+                                <p class=" font-medium">12,000$</p>
+                                <del class="text-red-800 font-medium">10,000$</del>
+                            </div>
+                            <button class="btn">Buy Now</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide flex justify-center items-center">
+                    <div
+                        class="phone border-2 rounded-md transition duration-300 ease-in-out border-white w-72 overflow-hidden hover:bg-purple-200">
+                        <img src="/assets/iphone12pro-6e452a6e.png" alt=""
+                            class="w-full hover:scale-105 h-72 transition duration-300 ease-in-out">
+                        <div class="py-4 px-3">
+                            <h3 class="text-2xl font-semibold">IPhone 12pro</h3>
+                            <div class="flex justify-between">
+                                <p class=" font-medium">15,000$</p>
+                                <del class="text-red-800 font-medium">12,000$</del>
+                            </div>
+                            <button class="btn">Buy Now</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide flex justify-center items-center">
+                    <div
+                        class="phone transition duration-300 ease-in-out border-2 rounded-md border-white w-72 overflow-hidden hover:bg-purple-200">
+                        <img src="/assets/iphone13-a88a986c.png" alt=""
+                            class="w-full hover:scale-105 h-72 transition duration-300 ease-in-out">
+                        <div class="py-4 px-3">
+                            <h3 class="text-2xl font-semibold">IPhone 13</h3>
+                            <div class="flex justify-between">
+                                <p class=" font-medium">12,000$</p>
+                                <del class="text-red-800 font-medium">10,000$</del>
+                            </div>
+                            <button class="btn">Buy Now</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide flex justify-center items-center">
+                    <div
+                        class="phone transition duration-300 ease-in-out border-2 rounded-md border-white w-72 overflow-hidden hover:bg-purple-200">
+                        <img src="/assets/iphone12pro-6e452a6e.png" alt=""
+                            class="w-full hover:scale-105 h-72 transition duration-300 ease-in-out">
+                        <div class="py-4 px-3">
+                            <h3 class="text-2xl font-semibold">IPhone 12pro</h3>
+                            <div class="flex justify-between">
+                                <p class=" font-medium">15,000$</p>
+                                <del class="text-red-800 font-medium">12,000$</del>
+                            </div>
+                            <button class="btn">Buy Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-pagination relative mt-4"></div>
+        </div>
+    </section>
+    <!-- Price Section -->
+    <div class="bg-purple-300 py-24 sm:py-32 border-white border-b-2" id="price">
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+            <div class="mx-auto max-w-2xl sm:text-center">
+                <h2 class="text-4xl font-bold tracking-tight text-gray-900 md:text-5xl font-serif text-center">Simple
+                    no-tricks pricing</h2>
+                <p class="mt-6 text-lg leading-8 text-gray-600 text-center">Distinctio et nulla eum soluta et neque
+                    labore
+                    quibusdam. Saepe et quasi iusto modi velit ut non voluptas in. Explicabo id ut laborum.</p>
+            </div>
+            <div
+                class="mx-auto mt-16 max-w-2xl rounded-3xl ring-1 ring-gray-200 sm:mt-20 md:mx-0 md:flex md:max-w-none">
+                <div class="p-8 sm:p-10 md:flex-auto">
+                    <h3 class="text-2xl font-bold tracking-tight text-gray-900">Lifetime membership</h3>
+                    <p class="mt-6 text-base leading-7 text-gray-600">Lorem ipsum dolor sit amet consect etur
+                        adipisicing elit. Itaque amet indis perferendis blanditiis repellendus etur quidem assumenda.
+                    </p>
+                    <div class="mt-10 flex items-center gap-x-4">
+                        <h4 class="flex-none text-sm font-semibold leading-6 text-indigo-600">What’s included</h4>
+                        <div class="h-px flex-auto bg-gray-100"></div>
+                    </div>
+                    <ul role="list"
+                        class="mt-8 grid grid-cols-1 gap-4 text-sm leading-6 text-gray-600 lg:grid-cols-2 lg:gap-6">
+                        <li class="flex gap-x-3">
+                            <svg class="h-6 w-5 flex-none text-indigo-600" viewBox="0 0 20 20" fill="currentColor"
+                                aria-hidden="true">
+                                <path fill-rule="evenodd"
+                                    d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            Private forum access
+                        </li>
+                        <li class="flex gap-x-3">
+                            <svg class="h-6 w-5 flex-none text-indigo-600" viewBox="0 0 20 20" fill="currentColor"
+                                aria-hidden="true">
+                                <path fill-rule="evenodd"
+                                    d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            Member resources
+                        </li>
+                        <li class="flex gap-x-3">
+                            <svg class="h-6 w-5 flex-none text-indigo-600" viewBox="0 0 20 20" fill="currentColor"
+                                aria-hidden="true">
+                                <path fill-rule="evenodd"
+                                    d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            Entry to annual conference
+                        </li>
+                        <li class="flex gap-x-3">
+                            <svg class="h-6 w-5 flex-none text-indigo-600" viewBox="0 0 20 20" fill="currentColor"
+                                aria-hidden="true">
+                                <path fill-rule="evenodd"
+                                    d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            Official member t-shirt
+                        </li>
+                    </ul>
+                </div>
+                <div class="-mt-2 p-2 md:mt-0 md:w-full md:max-w-md md:flex-shrink-0">
+                    <div
+                        class="rounded-2xl bg-purple-300 h-full hover:bg-purple-200 py-10 text-center ring-1 ring-inset ring-gray-900/5 md:flex md:flex-col md:justify-center md:py-16 border-2 border-white">
+                        <div class="mx-auto max-w-xs px-8">
+                            <p class="text-base font-semibold text-gray-600">Pay once, own it forever</p>
+                            <p class="mt-6 flex items-baseline justify-center gap-x-2">
+                                <span class="text-5xl font-bold tracking-tight text-gray-900">$349</span>
+                                <span class="text-sm font-semibold leading-6 tracking-wide text-gray-600">USD</span>
+                            </p>
+                            <a href="#"
+                                class="mt-10 block w-full rounded-md bg-purple-500 border-purple-500 border-2 text-black hover:bg-purple-400 px-3 py-2 text-center text-sm font-semibold shadow-sm">Get
+                                access</a>
+                            <p class="mt-6 text-xs leading-5 text-gray-600">Invoices and receipts available for easy
+                                company reimbursement</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Contact Section -->
+    <section id="contact" class="bg-purple-300">
+        <h1 class="text-4xl font-bold tracking-tight text-gray-900 md:text-6xl font-serif pt-16 text-center">Get In
+            Touch</h1>
+        <p class="mt-1 text-sm leading-6 text-gray-600 text-center">Use a permanent address where you can receive mail.
+        </p>
+        <div class="md:flex flex-row block">
+            <div class="basis-7/12">
+                <div class="py-10 lg:px-16 md:px-14 px-10">
+                    <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                        <div class="sm:col-span-3">
+                            <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">First
+                                name</label>
+                            <div class="mt-2">
+                                <input type="text" name="first-name" id="first-name" autocomplete="given-name"
+                                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:shadow-none sm:text-sm sm:leading-6">
+                            </div>
+                        </div>
+                        <div class="sm:col-span-3">
+                            <label for="last-name" class="block text-sm font-medium leading-6 text-gray-900">Last
+                                name</label>
+                            <div class="mt-2">
+                                <input type="text" name="last-name" id="last-name" autocomplete="family-name"
+                                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:shadow-none sm:text-sm sm:leading-6">
+                            </div>
+                        </div>
+                        <div class="sm:col-span-4">
+                            <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email
+                                address</label>
+                            <div class="mt-2">
+                                <input id="email" name="email" type="email" autocomplete="email"
+                                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:shadow-none sm:text-sm sm:leading-6">
+                            </div>
+                        </div>
+                        <div class="sm:col-span-3">
+                            <label for="country"
+                                class="block text-sm font-medium leading-6 text-gray-900">Country</label>
+                            <div class="mt-2">
+                                <select id="country" name="country" autocomplete="country-name"
+                                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:shadow-none sm:max-w-xs sm:text-sm sm:leading-6">
+                                    <option>United States</option>
+                                    <option>Canada</option>
+                                    <option>Mexico</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-span-full">
+                            <label for="street-address" class="block text-sm font-medium leading-6 text-gray-900">Street
+                                address</label>
+                            <div class="mt-2">
+                                <input type="text" name="street-address" id="street-address"
+                                    autocomplete="street-address"
+                                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:shadow-none sm:text-sm sm:leading-6">
+                            </div>
+                        </div>
+
+                        <div class="sm:col-span-2 sm:col-start-1">
+                            <label for="city" class="block text-sm font-medium leading-6 text-gray-900">City</label>
+                            <div class="mt-2">
+                                <input type="text" name="city" id="city" autocomplete="address-level2"
+                                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:shadow-none sm:text-sm sm:leading-6">
+                            </div>
+                        </div>
+
+                        <div class="sm:col-span-2">
+                            <label for="region"
+                                class="block text-sm font-medium leading-6 text-gray-900">Province</label>
+                            <div class="mt-2">
+                                <input type="text" name="region" id="region" autocomplete="address-level1"
+                                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:shadow-none sm:text-sm sm:leading-6">
+                            </div>
+                        </div>
+
+                        <div class="sm:col-span-2">
+                            <label for="postal-code" class="block text-sm font-medium leading-6 text-gray-900">ZIP
+                                code</label>
+                            <div class="mt-2">
+                                <input type="text" name="postal-code" id="postal-code" autocomplete="postal-code"
+                                    class="block w-full rounded-md border-0 py-1.5 text-gray-900  placeholder:text-gray-400 sm:text-sm sm:leading-6">
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#"
+                        class="mt-10 block rounded-md bg-purple-500 border-purple-500 border-2 text-black hover:bg-purple-400 px-3 py-3 text-center text-sm md:text-lg font-semibold shadow-sm">Send</a>
+                </div>
+            </div>
+            <div class="basis-5/12 pr-4">
+                <div class="flex justify-center items-center h-full">
+                    <div>
+                        <div class="flex items-center py-7">
+                            <div>
+                                <img src="/assets/home-34d0a19e.png" alt="" class="h-12 mx-2">
+                            </div>
+                            <div>
+                                <h4 class="lg:text-2xl text-lg font-semibold">Buttonwood, California.</h4>
+                                <p class="text-gray-500">Rosemead, CA 91770</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center py-7">
+                            <div>
+                                <img src="/assets/e-mail-f8583f02.png" alt="" class="h-12 mx-2">
+                            </div>
+                            <div>
+                                <h4 class="lg:text-2xl text-lg font-semibold">Applestore@gmail.com</h4>
+                                <p class="text-gray-500">Send us your query anytime!</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center py-7">
+                            <div>
+                                <img src="/assets/phone-56e5a507.png" alt="" class="h-12 mx-2">
+                            </div>
+                            <div>
+                                <h4 class="lg:text-2xl text-lg font-semibold">+1 253 565 2365</h4>
+                                <p class="text-gray-500">Mon to Fri 9am to 6pm</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="flex justify-center items-center bg-purple-400 py-6">
+        <h4 class="font-semibold">© 2023 Your Company All rights reserved.</h4>
+    </footer>
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!-- Initialize Swiper -->
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            slidesPerView: 1,
+            autoplay: true,
+            loop: true,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 1,
+                },
+                768: {
+                    slidesPerView: 2,
+                },
+                1024: {
+                    slidesPerView: 3,
+                },
+            },
+        });
+    </script>
+    <!-- Initialize NavBar -->
+    <script>
+        const showSidemenu = () => {
+            let sidemenu = document.getElementById('sidemenu')
+            console.log("hello")
+            sidemenu.style.display = "flex"
+        }
+        const closemenu = () => {
+            let sidemenu = document.getElementById('sidemenu')
+            console.log("hello")
+            sidemenu.style.display = "none"
+        }
+    </script>
+</body>
+
+</html>
